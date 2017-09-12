@@ -13,8 +13,6 @@ import PlotlyChart from 'PlotlyChart';
 
 ...
 
-
-
 render(){
     
      const data = [

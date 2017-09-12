@@ -4,11 +4,20 @@
   "description": "Typescript-React component for Plotly.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "caitengjiao1987@gmail.com",
-  "license": "MIT",
   "scripts": {
       "build": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidctj/react-plotlyjs-ts.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "plotly"
+  ],
+  "author": "caitengjiao1987@gmail.com",
+  "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
     "plotly.js": "^1.30.0",
