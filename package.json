@@ -1,6 +1,6 @@
 {
   "name": "react-plotlyjs-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Typescript-React component for Plotly.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
