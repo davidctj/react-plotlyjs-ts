@@ -6,11 +6,11 @@ export interface IPlotlyChartProps {
     data: any[];
     layout?: any;
     config?: any;
-    onClick?: (data: any) => any;
-    onBeforeHover?: (data: any) => any;
-    onHover?: (data: any) => any;
-    onUnHover?: (data: any) => any;
-    onSelected?: (data: any) => any;
+    onClick?: (data: { points: any, event: any }) => any;
+    onBeforeHover?: (data: { points: any, event: any }) => any;
+    onHover?: (data: { points: any, event: any }) => any;
+    onUnHover?: (data: { points: any, event: any }) => any;
+    onSelected?: (data: { points: any, event: any }) => any;
 }
 
 /***
