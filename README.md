@@ -1,4 +1,4 @@
-# React-PlotlyJS-Typescript
+# React-PlotlyJS-Typescript [![npm version](https://badge.fury.io/js/react-plotlyjs-ts.svg)](https://badge.fury.io/js/react-plotlyjs-ts)
 
 Inspired by [React-PlotlyJS](https://github.com/benjeffery/react-plotlyjs), many thanks!
 
@@ -9,12 +9,10 @@ Self-redraw when props changed.
 ## Usage
 
 ```typescript
-import PlotlyChart from 'PlotlyChart';
+import PlotlyChart from 'react-plotlyjs-ts';
 
 ...
-
-render(){
-    
+render(){    
      const data = [
           {
             type: 'scatter',  // all "scatter" attributes: https://plot.ly/javascript/reference/#scatter
@@ -45,8 +43,7 @@ render(){
               yref: 'paper'                 // #layout-annotations-yref
             }
           ]
-        };
-        
+        };        
     return (
         <PlotlyChart data={data} layout={layout} />
     )
