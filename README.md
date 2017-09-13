@@ -4,6 +4,10 @@ A react-typescript component for Plotly.JS graphs.
 
 Self-redraw when props changed. 
 
+<p align="center">
+    <img src="https://github.com/davidctj/react-plotlyjs-ts/blob/master/images/example.png" />
+</p>
+
 ## Usage
 
 ```bash
