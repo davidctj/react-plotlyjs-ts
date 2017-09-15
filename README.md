@@ -2,17 +2,15 @@
 
 A react-typescript component for Plotly.JS graphs.
 
-Self-redraw when props changed. 
+Self-redraw when props changed and window resize.
 
 <p align="center">
     <img src="https://github.com/davidctj/react-plotlyjs-ts/blob/master/images/example.png" />
 </p>
 
 ## Usage
-
 ```bash
-$ npm install react react-dom typescript plotly.js
-$ npm install react-plotlyjs-ts
+$ npm install plotly.js react-plotlyjs-ts
 ```
 
 ```typescript
@@ -51,10 +49,11 @@ render(){
             }
           ]
         };        
-    return (
-        <PlotlyChart data={toJS(this.model_data)}
+     return (
+        <PlotlyChart data={data}
                      layout={layout}
-                     onClick={({points, event}) => console.log(points, event)}>    )
+                     onClick={({points, event}) => console.log(points, event)}>
+        )
 }
 ```
 
