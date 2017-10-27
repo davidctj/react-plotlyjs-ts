@@ -54,7 +54,8 @@ render(){
     return (
         <PlotlyChart data={data}
                      layout={layout}
-                     onClick={({points, event}) => console.log(points, event)}>    )
+                     onClick={({points, event}) => console.log(points, event)} />
+    )
 }
 ```
 
