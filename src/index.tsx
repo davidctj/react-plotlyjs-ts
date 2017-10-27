@@ -3,7 +3,6 @@ import * as plotlyInstance from 'plotly.js/dist/plotly.js';
 import {cloneDeep} from 'lodash';
 
 export interface IPlotlyChartProps {
-    className?: any;
     config?: any;
     data: any[];
     layout?: any;
@@ -12,7 +11,6 @@ export interface IPlotlyChartProps {
     onHover?: (data: { points: any, event: any }) => any;
     onUnHover?: (data: { points: any, event: any }) => any;
     onSelected?: (data: { points: any, event: any }) => any;
-    style?: any;
 }
 
 /***

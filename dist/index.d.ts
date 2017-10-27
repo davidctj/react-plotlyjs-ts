@@ -1,7 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
 export interface IPlotlyChartProps {
-    className?: any;
     config?: any;
     data: any[];
     layout?: any;
@@ -25,7 +24,6 @@ export interface IPlotlyChartProps {
         points: any;
         event: any;
     }) => any;
-    style?: any;
 }
 /***
  * Usage:
