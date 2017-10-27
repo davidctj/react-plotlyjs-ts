@@ -52,7 +52,7 @@ render(){
           ]
         };        
     return (
-        <PlotlyChart data={toJS(this.model_data)}
+        <PlotlyChart data={data}
                      layout={layout}
                      onClick={({points, event}) => console.log(points, event)}>    )
 }
