@@ -61,14 +61,16 @@ render(){
 ## Documentation
 Define PlotlyChart props below:
 ```typescript
+   className?: any;
+   config?: any;
    data: any[];
    layout?: any;
-   config?: any;
    onClick?: (data: { points: any, event: any }) => any;
    onBeforeHover?: (data: { points: any, event: any }) => any;
    onHover?: (data: { points: any, event: any }) => any;
    onUnHover?: (data: { points: any, event: any }) => any;
    onSelected?: (data: { points: any, event: any }) => any;
+   style?: any;
 ```
 * data, layout, config are the same as in the [plotly.js](https://www.npmjs.com/package/plotly.js).
 * <b>onClick, onBeforeHover, onHover, onUnHover, onSelected</b> are on event functions. 
