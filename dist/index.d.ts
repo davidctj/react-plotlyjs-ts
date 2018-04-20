@@ -18,7 +18,7 @@ export interface IPlotlyChartProps {
  *               onClick={({points, event}) => console.log(points, event)}>
  */
 declare class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
-    protected plotlyElement: plotly.PlotlyHTMLElement | null;
+    container: plotly.PlotlyHTMLElement | null;
     attachListeners(): void;
     resize: () => void;
     draw: (props: IPlotlyChartProps) => Promise<void>;

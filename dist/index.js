@@ -74,10 +74,10 @@ var PlotlyChart = /** @class */ (function (_super) {
     __extends(PlotlyChart, _super);
     function PlotlyChart() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.plotlyElement = null;
+        _this.container = null;
         _this.resize = function () {
-            if (_this.plotlyElement) {
-                plotly.Plots.resize(_this.plotlyElement);
+            if (_this.container) {
+                plotly.Plots.resize(_this.container);
             }
         };
         _this.draw = function (props) { return __awaiter(_this, void 0, void 0, function () {
@@ -86,13 +86,13 @@ var PlotlyChart = /** @class */ (function (_super) {
                 switch (_b.label) {
                     case 0:
                         data = props.data, layout = props.layout, config = props.config;
-                        if (!this.plotlyElement) return [3 /*break*/, 2];
+                        if (!this.container) return [3 /*break*/, 2];
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a = this;
-                        return [4 /*yield*/, plotly.react(this.plotlyElement, data, Object.assign({}, layout), config)];
+                        return [4 /*yield*/, plotly.react(this.container, data, Object.assign({}, layout), config)];
                     case 1:
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
-                        _a.plotlyElement = _b.sent();
+                        _a.container = _b.sent();
                         _b.label = 2;
                     case 2: return [2 /*return*/];
                 }
@@ -102,16 +102,16 @@ var PlotlyChart = /** @class */ (function (_super) {
     }
     PlotlyChart.prototype.attachListeners = function () {
         if (this.props.onClick) {
-            this.plotlyElement.on('plotly_click', this.props.onClick);
+            this.container.on('plotly_click', this.props.onClick);
         }
         if (this.props.onHover) {
-            this.plotlyElement.on('plotly_hover', this.props.onHover);
+            this.container.on('plotly_hover', this.props.onHover);
         }
         if (this.props.onUnHover) {
-            this.plotlyElement.on('plotly_unhover', this.props.onUnHover);
+            this.container.on('plotly_unhover', this.props.onUnHover);
         }
         if (this.props.onSelected) {
-            this.plotlyElement.on('plotly_selected', this.props.onSelected);
+            this.container.on('plotly_selected', this.props.onSelected);
         }
         window.addEventListener('resize', this.resize);
     };
@@ -122,8 +122,8 @@ var PlotlyChart = /** @class */ (function (_super) {
         this.draw(this.props);
     };
     PlotlyChart.prototype.componentWillUnmount = function () {
-        if (this.plotlyElement) {
-            plotly.purge(this.plotlyElement);
+        if (this.container) {
+            plotly.purge(this.container);
         }
         window.removeEventListener('resize', this.resize);
     };
@@ -135,11 +135,11 @@ var PlotlyChart = /** @class */ (function (_super) {
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
-                            if (!(node && !this.plotlyElement)) return [3 /*break*/, 2];
+                            if (!(node && !this.container)) return [3 /*break*/, 2];
                             _a = this;
                             return [4 /*yield*/, plotly.newPlot(node, data, Object.assign({}, layout), config)];
                         case 1:
-                            _a.plotlyElement = _b.sent();
+                            _a.container = _b.sent();
                             _b.label = 2;
                         case 2: return [2 /*return*/];
                     }
