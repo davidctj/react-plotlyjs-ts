@@ -3,17 +3,17 @@
     "declaration": true,
     "outDir": "dist",
     "strictNullChecks": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom"
+    ],
     "module": "commonjs",
     "target": "es5",
     "jsx": "react"
   },
   "include": [
     "./src/"
-  ],
-  "lib": [
-    "es2015",
-    "es2016",
-    "es2017",
-    "dom"
   ]
 }

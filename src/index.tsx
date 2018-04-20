@@ -1,16 +1,15 @@
+import * as plotly from 'plotly.js';
 import * as React from 'react';
-import * as plotlyInstance from 'plotly.js/dist/plotly.js';
-import {cloneDeep} from 'lodash';
 
 export interface IPlotlyChartProps {
-    config?: any;
-    data: any[];
-    layout?: any;
-    onClick?: (data: { points: any, event: any }) => any;
-    onBeforeHover?: (data: { points: any, event: any }) => any;
-    onHover?: (data: { points: any, event: any }) => any;
-    onUnHover?: (data: { points: any, event: any }) => any;
-    onSelected?: (data: { points: any, event: any }) => any;
+  config?: plotly.Config;
+  data: Partial<plotly.ScatterData>[];
+  layout?: plotly.Layout;
+  onClick?: (event: plotly.PlotMouseEvent) => void;
+  onBeforeHover?: (event: plotly.PlotMouseEvent) => void;
+  onHover?: (event: plotly.PlotMouseEvent) => void;
+  onUnHover?: (event: plotly.PlotMouseEvent) => void;
+  onSelected?: (event: plotly.PlotSelectionEvent) => void;
 }
 
 /***
@@ -20,57 +19,67 @@ export interface IPlotlyChartProps {
  *               onClick={({points, event}) => console.log(points, event)}>
  */
 class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
+  public container: plotly.PlotlyHTMLElement | null = null;
 
-    container: any = null;
-
-    attachListeners() {
-        if (this.props.onClick) {
-            this.container.on('plotly_click', this.props.onClick);
-        }
-        if (this.props.onBeforeHover) {
-            this.container.on('plotly_beforehover', this.props.onBeforeHover);
-        }
-        if (this.props.onHover) {
-            this.container.on('plotly_hover', this.props.onHover);
-        }
-        if (this.props.onUnHover) {
-            this.container.on('plotly_unhover', this.props.onUnHover);
-        }
-        if (this.props.onSelected) {
-            this.container.on('plotly_selected', this.props.onSelected);
-        }
-        window.addEventListener('resize', this.resize);
+  public attachListeners() {
+    if (this.props.onClick) {
+      this.container!.on('plotly_click', this.props.onClick);
     }
-
-    resize = () => {
-        plotlyInstance.Plots.resize(this.container);
+    if (this.props.onHover) {
+      this.container!.on('plotly_hover', this.props.onHover);
     }
-
-    draw = (props: IPlotlyChartProps) => {
-        const {data, layout, config} = props;
-        // We clone the layout as plotly mutates it.
-        plotlyInstance.newPlot(this.container, data, cloneDeep(layout), config);
-        this.attachListeners();
+    if (this.props.onUnHover) {
+      this.container!.on('plotly_unhover', this.props.onUnHover);
     }
-
-
-    componentWillReceiveProps(nextProps: IPlotlyChartProps) {
-        this.draw(nextProps);
+    if (this.props.onSelected) {
+      this.container!.on('plotly_selected', this.props.onSelected);
     }
+    window.addEventListener('resize', this.resize);
+  }
 
-    componentDidMount() {
-        this.draw(this.props);
+  public resize = () => {
+    if (this.container) {
+      plotly.Plots.resize(this.container);
     }
+  };
 
-    componentWillUnmount() {
-        plotlyInstance.purge(this.container);
-        window.removeEventListener('resize', this.resize);
+  public draw = async (props: IPlotlyChartProps) => {
+    const { data, layout, config } = props;
+    if (this.container) {
+      // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
+      this.container = await plotly.react(this.container, data, Object.assign({}, layout), config);
+      this.attachListeners();
     }
+  };
 
-    render() {
-        const {data, layout, config, onClick, onBeforeHover, onHover, onSelected, onUnHover, ...other} = this.props;
-        return <div {...other} ref={(node) => this.container = node}/>;
+  public componentWillReceiveProps(nextProps: IPlotlyChartProps) {
+    this.draw(nextProps);
+  }
+
+  public componentDidMount() {
+    this.draw(this.props);
+  }
+
+  public componentWillUnmount() {
+    if (this.container) {
+      plotly.purge(this.container);
     }
-};
+    window.removeEventListener('resize', this.resize);
+  }
+
+  public render() {
+    const { data, layout, config, onClick, onHover, onSelected, onUnHover, ...other } = this.props;
+    return (
+      <div
+        {...other}
+        ref={async node => {
+          if (node && !this.container) {
+            this.container = await plotly.newPlot(node, data as any, Object.assign({}, layout), config);
+          }
+        }}
+      />
+    );
+  }
+}
 
 export default PlotlyChart;
