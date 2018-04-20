@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export interface IPlotlyChartProps {
   config?: plotly.Config;
-  data: Partial<plotly.ScatterData>[]
+  data: Partial<plotly.ScatterData>[];
   layout?: plotly.Layout;
   onClick?: (event: plotly.PlotMouseEvent) => void;
   onBeforeHover?: (event: plotly.PlotMouseEvent) => void;
@@ -48,6 +48,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (this.container) {
       // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
       this.container = await plotly.react(this.container, data, Object.assign({}, layout), config);
+      this.attachListeners();
     }
   };
 
