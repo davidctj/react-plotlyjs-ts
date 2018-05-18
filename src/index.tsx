@@ -2,9 +2,9 @@ import * as plotly from 'plotly.js';
 import * as React from 'react';
 
 export interface IPlotlyChartProps {
-  config?: plotly.Config;
-  data: Partial<plotly.ScatterData>[];
-  layout?: plotly.Layout;
+  config?: any;
+  data: any;
+  layout?: any;
   onClick?: (event: plotly.PlotMouseEvent) => void;
   onBeforeHover?: (event: plotly.PlotMouseEvent) => void;
   onHover?: (event: plotly.PlotMouseEvent) => void;
@@ -75,6 +75,7 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
         ref={async node => {
           if (node && !this.container) {
             this.container = await plotly.newPlot(node, data as any, Object.assign({}, layout), config);
+            this.attachListeners();
           }
         }}
       />

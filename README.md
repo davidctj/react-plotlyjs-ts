@@ -11,52 +11,62 @@ Self-redraw when props changed.
 ## Usage
 
 ```bash
-$ npm install react react-dom typescript plotly.js
-$ npm install react-plotlyjs-ts
+$ npm i -S react react-dom typescript
+$ npm i -D @types/plotly.js
+$ npm i -S plotly.js react-plotlyjs-ts
 ```
 
 ```typescript
-import PlotlyChart from 'react-plotlyjs-ts';
+import * as React from 'react';
+import PlotlyChart from './PloylyChart';
 
-...
-render(){    
-     const data = [
-          {
-            type: 'scatter',  
-            x: [1, 2, 3],     
-            y: [6, 2, 3],     
-            marker: {       
-              color: 'rgb(16, 32, 77)'
-            }
-          },
-          {
-            type: 'bar',   
-            x: [1, 2, 3],  
-            y: [6, 2, 3],  
-            name: 'bar chart example' 
-          }
-        ];
-        const layout = {           
-          title: 'simple example', 
-          xaxis: {                 
-            title: 'time'         
-          },
-          annotations: [           
+class App extends React.Component {
+    public handleClick = (evt: any) => alert('click')
+    public handleHover = (evt: any) => alert('hover')
+
+    public render() {
+        const data = [
             {
-              text: 'simple annotation',    
-              x: 0,                         
-              xref: 'paper',                
-              y: 0,                         
-              yref: 'paper'                 
+                marker: {
+                    color: 'rgb(16, 32, 77)'
+                },
+                type: 'scatter',
+                x: [1, 2, 3],
+                y: [6, 2, 3]
+            },
+            {
+                name: 'bar chart example',
+                type: 'bar',
+                x: [1, 2, 3],
+                y: [6, 2, 3],
             }
-          ]
-        };        
-    return (
-        <PlotlyChart data={data}
-                     layout={layout}
-                     onClick={({points, event}) => console.log(points, event)} />
-    )
+        ];
+        const layout = {
+            annotations: [
+                {
+                    text: 'simple annotation',
+                    x: 0,
+                    xref: 'paper',
+                    y: 0,
+                    yref: 'paper'
+                }
+            ],
+            title: 'simple example',
+            xaxis: {
+                title: 'time'
+            },
+        };
+        return (
+            <PlotlyChart data={data}
+                         layout={layout}
+                         onClick={this.handleClick}
+                         onHover={this.handleHover}
+            />
+        );
+    }
 }
+
+export default App;
 ```
 
 ## Documentation

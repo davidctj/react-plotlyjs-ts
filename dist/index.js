@@ -93,6 +93,7 @@ var PlotlyChart = /** @class */ (function (_super) {
                     case 1:
                         // plotly.react will not destroy the old plot: https://plot.ly/javascript/plotlyjs-function-reference/#plotlyreact
                         _a.container = _b.sent();
+                        this.attachListeners();
                         _b.label = 2;
                     case 2: return [2 /*return*/];
                 }
@@ -140,6 +141,7 @@ var PlotlyChart = /** @class */ (function (_super) {
                             return [4 /*yield*/, plotly.newPlot(node, data, Object.assign({}, layout), config)];
                         case 1:
                             _a.container = _b.sent();
+                            this.attachListeners();
                             _b.label = 2;
                         case 2: return [2 /*return*/];
                     }
