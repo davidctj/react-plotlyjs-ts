@@ -18,7 +18,7 @@ $ npm i -S plotly.js react-plotlyjs-ts
 
 ```typescript
 import * as React from 'react';
-import PlotlyChart from './PloylyChart';
+import PlotlyChart from 'react-plotlyjs-ts';
 
 class App extends React.Component {
     public handleClick = (evt: any) => alert('click')
