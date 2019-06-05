@@ -1,21 +1,27 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -32,8 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -57,8 +63,10 @@ var __rest = (this && this.__rest) || function (s, e) {
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
         t[p] = s[p];
     if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-            t[p[i]] = s[p[i]];
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -102,17 +110,84 @@ var PlotlyChart = /** @class */ (function (_super) {
         return _this;
     }
     PlotlyChart.prototype.attachListeners = function () {
+        if (this.props.onAfterExport) {
+            this.container.on('plotly_afterexport', this.props.onAfterExport);
+        }
+        if (this.props.onAfterPlot) {
+            this.container.on('plotly_afterplot', this.props.onAfterPlot);
+        }
+        if (this.props.onAnimated) {
+            this.container.on('plotly_animated', this.props.onAnimated);
+        }
+        if (this.props.onAnimatingFrame) {
+            this.container.on('plotly_animatingframe', this.props.onAnimatingFrame);
+        }
+        if (this.props.onAnimationInterrupted) {
+            this.container.on('plotly_animationinterrupted', this.props.onAnimationInterrupted);
+        }
+        if (this.props.onAutoSize) {
+            this.container.on('plotly_autosize', this.props.onAutoSize);
+        }
+        if (this.props.onBeforeExport) {
+            this.container.on('plotly_beforeexport', this.props.onBeforeExport);
+        }
+        // did not find onButtonClicked in @types/plotly.js?
+        // if (this.props.onButtonClicked) {
+        //   this.container!.on('plotly_buttonclicked', this.props.onButtonClicked);
+        // }
         if (this.props.onClick) {
             this.container.on('plotly_click', this.props.onClick);
+        }
+        if (this.props.onClickAnnotation) {
+            this.container.on('plotly_clickannotation', this.props.onClickAnnotation);
+        }
+        if (this.props.onDeselect) {
+            this.container.on('plotly_deselect', this.props.onDeselect);
+        }
+        if (this.props.onDoubleClick) {
+            this.container.on('plotly_doubleclick', this.props.onDoubleClick);
+        }
+        if (this.props.onFramework) {
+            this.container.on('plotly_framework', this.props.onFramework);
         }
         if (this.props.onHover) {
             this.container.on('plotly_hover', this.props.onHover);
         }
+        if (this.props.onLegendClick) {
+            this.container.on('plotly_legendclick', this.props.onLegendClick);
+        }
+        if (this.props.onLegendDoubleClick) {
+            this.container.on('plotly_legenddoubleclick', this.props.onLegendDoubleClick);
+        }
+        if (this.props.onRelayout) {
+            this.container.on('plotly_relayout', this.props.onRelayout);
+        }
+        if (this.props.onRestyle) {
+            this.container.on('plotly_restyle', this.props.onRestyle);
+        }
+        if (this.props.onRedraw) {
+            this.container.on('plotly_redraw', this.props.onRedraw);
+        }
+        if (this.props.onSelecting) {
+            this.container.on('plotly_selecting', this.props.onSelecting);
+        }
+        if (this.props.onSliderChange) {
+            this.container.on('plotly_sliderchange', this.props.onSliderChange);
+        }
+        if (this.props.onSliderEnd) {
+            this.container.on('plotly_sliderend', this.props.onSliderEnd);
+        }
+        if (this.props.onSliderStart) {
+            this.container.on('plotly_sliderstart', this.props.onSliderStart);
+        }
+        if (this.props.onTransitioning) {
+            this.container.on('plotly_transitioning', this.props.onTransitioning);
+        }
+        if (this.props.onTransitionInterrupted) {
+            this.container.on('plotly_transitioninterrupted', this.props.onTransitionInterrupted);
+        }
         if (this.props.onUnHover) {
             this.container.on('plotly_unhover', this.props.onUnHover);
-        }
-        if (this.props.onSelected) {
-            this.container.on('plotly_selected', this.props.onSelected);
         }
         window.addEventListener('resize', this.resize);
     };
