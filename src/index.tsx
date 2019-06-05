@@ -126,6 +126,9 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
     if (this.props.onUnHover) {
       this.container!.on('plotly_unhover', this.props.onUnHover);
     }
+    if (this.props.onEvent) {
+      this.container!.on('plotly_event', this.props.onEvent);
+    }
     window.addEventListener('resize', this.resize);
   }
 
@@ -160,7 +163,39 @@ class PlotlyChart extends React.Component<IPlotlyChartProps, any> {
   }
 
   public render() {
-    const { data, layout, config, onClick, onHover, onSelected, onUnHover, ...other } = this.props;
+    const { 
+      data, 
+      layout, 
+      config, 
+      onAfterExport,
+      onAfterPlot,
+      onAnimated,
+      onAnimatingFrame,
+      onAnimationInterrupted,
+      onAutoSize,
+      onBeforeExport,
+      onClick, 
+      onClickAnnotation,
+      onDeselect,
+      onDoubleClick,
+      onFramework,
+      onHover, 
+      onLegendClick,
+      onLegendDoubleClick,
+      onRelayout,
+      onRestyle,
+      onRedraw,
+      onSelected, 
+      onSelecting,
+      onSliderChange,
+      onSliderEnd,
+      onSliderStart,
+      onTransitioning,
+      onTransitionInterrupted,
+      onUnHover, 
+      onEvent,
+      ...other 
+    } = this.props;
     return (
       <div
         {...other}

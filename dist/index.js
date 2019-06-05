@@ -189,6 +189,9 @@ var PlotlyChart = /** @class */ (function (_super) {
         if (this.props.onUnHover) {
             this.container.on('plotly_unhover', this.props.onUnHover);
         }
+        if (this.props.onEvent) {
+            this.container.on('plotly_event', this.props.onEvent);
+        }
         window.addEventListener('resize', this.resize);
     };
     PlotlyChart.prototype.componentWillReceiveProps = function (nextProps) {
@@ -205,7 +208,7 @@ var PlotlyChart = /** @class */ (function (_super) {
     };
     PlotlyChart.prototype.render = function () {
         var _this = this;
-        var _a = this.props, data = _a.data, layout = _a.layout, config = _a.config, onClick = _a.onClick, onHover = _a.onHover, onSelected = _a.onSelected, onUnHover = _a.onUnHover, other = __rest(_a, ["data", "layout", "config", "onClick", "onHover", "onSelected", "onUnHover"]);
+        var _a = this.props, data = _a.data, layout = _a.layout, config = _a.config, onAfterExport = _a.onAfterExport, onAfterPlot = _a.onAfterPlot, onAnimated = _a.onAnimated, onAnimatingFrame = _a.onAnimatingFrame, onAnimationInterrupted = _a.onAnimationInterrupted, onAutoSize = _a.onAutoSize, onBeforeExport = _a.onBeforeExport, onClick = _a.onClick, onClickAnnotation = _a.onClickAnnotation, onDeselect = _a.onDeselect, onDoubleClick = _a.onDoubleClick, onFramework = _a.onFramework, onHover = _a.onHover, onLegendClick = _a.onLegendClick, onLegendDoubleClick = _a.onLegendDoubleClick, onRelayout = _a.onRelayout, onRestyle = _a.onRestyle, onRedraw = _a.onRedraw, onSelected = _a.onSelected, onSelecting = _a.onSelecting, onSliderChange = _a.onSliderChange, onSliderEnd = _a.onSliderEnd, onSliderStart = _a.onSliderStart, onTransitioning = _a.onTransitioning, onTransitionInterrupted = _a.onTransitionInterrupted, onUnHover = _a.onUnHover, onEvent = _a.onEvent, other = __rest(_a, ["data", "layout", "config", "onAfterExport", "onAfterPlot", "onAnimated", "onAnimatingFrame", "onAnimationInterrupted", "onAutoSize", "onBeforeExport", "onClick", "onClickAnnotation", "onDeselect", "onDoubleClick", "onFramework", "onHover", "onLegendClick", "onLegendDoubleClick", "onRelayout", "onRestyle", "onRedraw", "onSelected", "onSelecting", "onSliderChange", "onSliderEnd", "onSliderStart", "onTransitioning", "onTransitionInterrupted", "onUnHover", "onEvent"]);
         return (React.createElement("div", __assign({}, other, { ref: function (node) { return __awaiter(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
