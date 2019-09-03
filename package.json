@@ -1,6 +1,6 @@
 {
   "name": "react-plotlyjs-ts",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Typescript-React component for Plotly.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/blizzardjessica/react-plotlyjs-ts.git"
+    "url": "https://github.com/davidctj/react-plotlyjs-ts.git"
   },
   "keywords": [
     "react",
